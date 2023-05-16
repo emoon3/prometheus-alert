@@ -4,7 +4,7 @@
   ansible.builtin.get_url:
     url: https://github.com/prometheus/prometheus/releases/download/v2.44.0/prometheus-2.44.0.linux-amd64.tar.gz
     dest: /tmp
-    mode: '0440'
+    mode: '0740'
 
 - name: Extract prometheus binary into /user/local/bin
   ansible.builtin.unarchive:
