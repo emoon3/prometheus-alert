@@ -1,0 +1,17 @@
+---
+# tasks file for prometheus
+  - name: Create configuration directory
+    file:
+      path: "{{ config_dir }}"
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: Copy config file
+    copy:
+      src: prometheus.yml
+      dest: "{{ prometheus_config_dir }}/prometheus.yml"
+      owner: root
+      group: root
+      mode: 0644
