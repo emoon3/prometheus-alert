@@ -16,7 +16,7 @@
 
 - name: Start node_explorer
   systemd:
-    name: mode_explorer
+    name: node_explorer
     state: started
     enabled: yes
     daemon_reload: true

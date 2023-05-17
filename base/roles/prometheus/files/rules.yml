@@ -2,7 +2,7 @@ groups:
 - name: alert.rules
   rules:
   - alert: DiskIOAbove200MBPerSecond
-    expr: ((rate(node_disk_read_bytes_total[2m])) + rate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 200)
+    expr: ((rate(node_disk_read_bytes_total[2m]) + rate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 200)
     for: 5m
     labels:
       severity: warning

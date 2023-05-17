@@ -73,6 +73,14 @@
     group: root
     mode: 0644
 
+- name: Copy alertmanager config file
+  copy:
+    src: alertmanager.yml
+    dest: "{{ config_dir }}/alertmanager.yml"
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Copy rules file
   copy:
     src: rules.yml
@@ -108,3 +116,5 @@
     group: root
   notify:
     - Start prometheus
+
+
