@@ -1,8 +1,0 @@
----
-- name:  use prometheus role
-  hosts: all
-  user: ansible
-  become: true
-
-  roles:
-    - role: prometheus

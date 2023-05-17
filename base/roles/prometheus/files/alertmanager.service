@@ -4,7 +4,7 @@ Description=Run alertmanager
 [Service]
 User=demo
 Group=demo
-ExecStart=/usr/local/bin/alertmanager
+ExecStart=/usr/local/bin/alertmanager-0.25.0.linux-amd64/alertmanager
 
 [Install]
 WantedBy=multi-user.target
