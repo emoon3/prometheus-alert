@@ -1,0 +1,10 @@
+[Unit]
+Description=Run prometheus
+
+[Service]
+User=demo
+Group=demo
+ExecStart=/usr/local/bin/prometheus
+
+[Install]
+WantedBy=multi-user.target

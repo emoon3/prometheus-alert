@@ -81,3 +81,30 @@
     group: root
     mode: 0644
 
+# Configure services
+- name: Copy alertmanager systemd service file to server
+  copy:
+    src: alertmanager.service
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+  notify:
+    - Start alertmanager
+
+- name: Copy node explorer systemd service file to server
+  copy:
+    src: node_explorer.service
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+  notify:
+    - Start node_explorer
+
+- name: Copy prometheus systemd service file to server
+  copy:
+    src: prometheus.service
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+  notify:
+    - Start prometheus

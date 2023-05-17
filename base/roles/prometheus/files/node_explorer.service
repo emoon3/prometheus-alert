@@ -1,0 +1,10 @@
+[Unit]
+Description=Run node explorer
+
+[Service]
+User=demo
+Group=demo
+ExecStart=/usr/local/bin/node_exporter
+
+[Install]
+WantedBy=multi-user.target

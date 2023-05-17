@@ -1,2 +1,19 @@
 ---
 # handlers file for prometheus
+- name: Start prometheus
+  systemd:
+    name: prometheus
+    state: started
+    enabled: yes
+
+- name: Start alertmanager
+  systemd:
+    name: alertmanager
+    state: started
+    enabled: yes
+
+- name: Start mode_explorer
+  systemd:
+    name: mode_explorer
+    state: started
+    enabled: yes

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run alertmanager
+
+[Service]
+User=demo
+Group=demo
+ExecStart=/usr/local/bin/alertmanager
+
+[Install]
+WantedBy=multi-user.target
