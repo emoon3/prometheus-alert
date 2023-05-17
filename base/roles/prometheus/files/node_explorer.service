@@ -2,8 +2,8 @@
 Description=Run node explorer
 
 [Service]
-User=demo
-Group=demo
+User=root
+Group=root
 ExecStart=/usr/local/bin/node_exporter-1.5.0.linux-amd64/node_exporter
 
 [Install]
