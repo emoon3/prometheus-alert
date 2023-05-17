@@ -8,6 +8,7 @@
 
 - name: Extract prometheus binary into /user/local/bin
   ansible.builtin.unarchive:
+    remote_src: yes
     src: /tmp/prometheus-2.44.0.linux-amd64.tar.gz
     dest: /usr/local/bin
 
