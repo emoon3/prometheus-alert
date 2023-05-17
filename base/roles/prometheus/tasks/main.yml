@@ -1,22 +1,62 @@
 ---
-# tasks file for prometheus
+# Download files
 - name: Download prometheus
   ansible.builtin.get_url:
     url: https://github.com/prometheus/prometheus/releases/download/v2.44.0/prometheus-2.44.0.linux-amd64.tar.gz
     dest: /tmp
     mode: '0740'
 
+- name: Download alertmanager
+  ansible.builtin.get_url:
+    url:  https://github.com/prometheus/alertmanager/releases/download/v0.25.0/alertmanager-0.25.0.linux-amd64.tar.gz
+    dest: /tmp
+    mode: '0740'
+
+- name: Download node-exporter
+  ansible.builtin.get_url:
+    url:  https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
+    dest: /tmp
+    mode: '0740'
+
+
+# Extract files
 - name: Extract prometheus binary into /user/local/bin
   ansible.builtin.unarchive:
     remote_src: yes
     src: /tmp/prometheus-2.44.0.linux-amd64.tar.gz
     dest: /usr/local/bin
 
+- name: Extract alertmanager into /user/local/bin
+  ansible.builtin.unarchive:
+    remote_src: yes
+    src: /tmp/alertmanager-0.25.0.linux-amd64.tar.gz
+    dest: /usr/local/bin
+
+- name: Extract node-exporter into /user/local/bin
+  ansible.builtin.unarchive:
+    remote_src: yes
+    src: /tmp/node_exporter-1.5.0.linux-amd64.tar.gz
+    dest: /usr/local/bin
+
+
+# Clean up archives    
 - name: delete prometheus archive
   file:
     path: /tmp/prometheus-2.44.0.linux-amd64.tar.gz
     state: absent
 
+- name: delete alertmanager archive
+  file:
+    path: /tmp/alertmanager-0.25.0.linux-amd64.tar.gz
+    state: absent
+
+- name: delete node-exporter archive
+  file:
+    path: /tmp/node_exporter-1.5.0.linux-amd64.tar.gz
+    state: absent
+
+    
+# Install config files
 - name: Create configuration directory
   file:
     path: "{{ config_dir }}"
@@ -25,10 +65,19 @@
     group: root
     mode: 0755
 
-- name: Copy config file
+- name: Copy prometheus config file
   copy:
     src: prometheus.yml
     dest: "{{ config_dir }}/prometheus.yml"
     owner: root
     group: root
     mode: 0644
+
+- name: Copy rules file
+  copy:
+    src: rules.yml
+    dest: "{{ config_dir }}/rules.yml"
+    owner: root
+    group: root
+    mode: 0644
+
