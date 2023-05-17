@@ -4,7 +4,7 @@ Description=Run prometheus
 [Service]
 User=demo
 Group=demo
-ExecStart=/usr/local/bin/prometheus
+ExecStart=/usr/local/bin/prometheus --config.file /etc/prometheus/prometheus.yml
 
 [Install]
 WantedBy=multi-user.target
