@@ -28,7 +28,7 @@
 - name: Copy config file
   copy:
     src: prometheus.yml
-    dest: "{{ prometheus_config_dir }}/prometheus.yml"
+    dest: "{{ config_dir }}/prometheus.yml"
     owner: root
     group: root
     mode: 0644

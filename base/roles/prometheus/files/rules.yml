@@ -1,0 +1,20 @@
+groups:
+- name: alert.rules
+  rules:
+  - alert: DiskIOAbove200MBPerSecond
+    expr: ((rate(node_disk_read_bytes_total[2m])) + rate(node_disk_written_bytes_total[2m])) / 1024 / 1024 > 200)
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: High disk read and write throughput
+      description: "Disk reads and writes are above 200MB/s"
+
+  - alert: PrimaryNetworkInterfaceUtilAbove70Percent
+    expr: ((rate(node_network_receive_bytes_total{device="eth0"}[1m]) + rate(node_network_transmit_bytes_total{device="eth0"}[1m])) / node_network_speed_bytes{device="eth0"} > 0.7)
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: High primary network interface utilization
+      description: "Network utilization on the primary network interface is above 70%"
